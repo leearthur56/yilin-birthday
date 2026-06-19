@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Yilin! 🦭🎉</title>
+  <meta name="description" content="A seal-themed birthday surprise for Yilin." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦭</text></svg>" />
+</head>
+<body>
+  <div class="bubbles" aria-hidden="true"></div>
+
+  <main class="hero">
+    <div class="seal-stage" aria-hidden="true">
+      <div class="seal">🦭</div>
+      <div class="seal seal--small">🦭</div>
+      <div class="balloon b1">🎈</div>
+      <div class="balloon b2">🎈</div>
+      <div class="balloon b3">🎈</div>
+    </div>
+
+    <h1 class="title">Happy Birthday,<br /><span class="name">Yilin!</span></h1>
+    <p class="subtitle">Wishing you a day as warm, cozy, and wonderful as a seal basking in the sun. 🌊✨</p>
+
+    <div class="cta">
+      <a class="btn btn--play" href="game.html">🐰 Play the Seal &amp; Bunny Game 🦭</a>
+      <button class="btn btn--wish" id="wishBtn" type="button">🎂 Make a Wish</button>
+    </div>
+
+    <p class="wish-text" id="wishText" hidden>🎉 Wish made! May all your seal-sized dreams come true. 🎉</p>
+  </main>
+
+  <footer class="footer">Made with 💙 and a flippity-flop of seals.</footer>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <script src="confetti.js"></script>
+  <script>
+    // Bubbles drifting up from the ocean floor
+    (function () {
+      const layer = document.querySelector('.bubbles');
+      const COUNT = 26;
+      for (let i = 0; i < COUNT; i++) {
+        const b = document.createElement('span');
+        b.className = 'bubble';
+        const size = 6 + Math.random() * 26;
+        b.style.left = Math.random() * 100 + 'vw';
+        b.style.width = b.style.height = size + 'px';
+        b.style.animationDuration = 6 + Math.random() * 10 + 's';
+        b.style.animationDelay = -Math.random() * 12 + 's';
+        b.style.opacity = 0.15 + Math.random() * 0.35;
+        layer.appendChild(b);
+      }
+    })();
+
+    // Confetti on first load
+    window.addEventListener('load', () => burstConfetti(140));
+
+    // Make a wish
+    const wishBtn = document.getElementById('wishBtn');
+    const wishText = document.getElementById('wishText');
+    wishBtn.addEventListener('click', () => {
+      wishText.hidden = false;
+      wishText.classList.remove('pop');
+      void wishText.offsetWidth; // restart animation
+      wishText.classList.add('pop');
+      burstConfetti(120);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seal &amp; Bunny Birthday Catch 🦭🐰</title>
+  <meta name="description" content="Help the seal catch the birthday treats the bunnies toss down!" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="game.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦭</text></svg>" />
+</head>
+<body class="game-body">
+  <div class="bubbles" aria-hidden="true"></div>
+
+  <header class="game-header">
+    <a class="back-link" href="index.html">← Back</a>
+    <h1 class="game-title">Seal &amp; Bunny Birthday Catch</h1>
+    <div class="spacer"></div>
+  </header>
+
+  <div class="hud">
+    <span class="hud-item">⭐ Score: <strong id="score">0</strong></span>
+    <span class="hud-item">🔥 Combo: <strong id="combo">x1</strong></span>
+    <span class="hud-item">❤️ Lives: <strong id="lives">★★★</strong></span>
+    <span class="hud-item">🏆 Best: <strong id="best">0</strong></span>
+  </div>
+
+  <div class="stage-wrap">
+    <canvas id="game" width="720" height="520" aria-label="Seal and bunny catching game"></canvas>
+
+    <div class="overlay" id="overlay">
+      <div class="card">
+        <h2 id="overlayTitle">🦭 Seal &amp; Bunny Catch 🐰</h2>
+        <p id="overlayText">
+          The bunnies are tossing birthday treats off the iceberg!<br />
+          Slide your seal to <strong>catch fish 🐟, cake 🎂, hearts 💖 &amp; gifts 🎁</strong>.<br />
+          Dodge the <strong>pufferfish 🐡</strong> — they cost a life!
+        </p>
+        <p class="controls-hint">
+          Move: <kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd> &nbsp;·&nbsp; or move your mouse / drag on touch
+        </p>
+        <button class="btn btn--play" id="startBtn" type="button">Start Game ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="footnote">Catching builds your combo for bonus points. Have fun, birthday star! 🎉</p>
+
+  <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+
+  <script src="confetti.js"></script>
+  <script>
+    // Background bubbles (shared look with home page)
+    (function () {
+      const layer = document.querySelector('.bubbles');
+      for (let i = 0; i < 18; i++) {
+        const b = document.createElement('span');
+        b.className = 'bubble';
+        const size = 6 + Math.random() * 22;
+        b.style.left = Math.random() * 100 + 'vw';
+        b.style.width = b.style.height = size + 'px';
+        b.style.animationDuration = 7 + Math.random() * 9 + 's';
+        b.style.animationDelay = -Math.random() * 12 + 's';
+        b.style.opacity = 0.12 + Math.random() * 0.3;
+        layer.appendChild(b);
+      }
+    })();
+  </script>
+  <script src="game.js"></script>
+</body>
+</html>
